@@ -34,35 +34,20 @@ namespace Airportdetails.Controllers
         // GET: AirportController/Create
         public ActionResult Create()
         {
-            Dtoclass m=new Dtoclass();
-            var titles = context.GetAllCities();
-            List<string> k = new List<string>();
-            foreach(var i in titles)
-            {
-                k.Add(i.NAME);
-            }
-            m.cities = k;
-            return View(m);
+            
+                Dtoclass m = new Dtoclass();
+                var titles = context.GetAllCities();
+                List<string> k = new List<string>();
+                foreach (var i in titles)
+                {
+                    k.Add(i.NAME);
+                }
+                m.cities = k;
+               
+                return View(m);
+          
         }
-
-        // POST: AirportController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection FormCollection)
-        {
-            try
-            {
-                string From = FormCollection["From"].ToString();
-                string To= FormCollection["To"].ToString();
-                List<airport> k = context.airportsbtwcities(From,To);
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
+        
         // GET: AirportController/Edit/5
         public ActionResult Edit(int id)
         {
